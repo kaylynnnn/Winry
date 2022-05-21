@@ -59,7 +59,7 @@ def _prefix_callable(bot: Winry, msg: discord.Message):
     if msg.guild is None:
         base.append('w!')
     else:
-        base.extend(bot.prefixes.get(msg.guild.id, ['w!']))
+        base.extend(bot.prefixes.get(msg.guild.id, config.default_prefixes))
     return base
 
 
@@ -177,7 +177,7 @@ class Winry(commands.AutoShardedBot):
         return local_inject(self, proxy_msg)  # type: ignore  # lying
 
     def get_raw_guild_prefixes(self, guild_id: int) -> list[str]:
-        return self.prefixes.get(guild_id, ['?', '!'])
+        return self.prefixes.get(guild_id, config.default_prefixes)
 
     async def set_guild_prefixes(self, guild: discord.abc.Snowflake, prefixes: list[str]) -> None:
         if len(prefixes) == 0:

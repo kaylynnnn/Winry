@@ -47,6 +47,7 @@ postgresql = 'postgresql://user:password@host/database' # your postgresql info f
 stat_webhook = ('<webhook_id>','<webhook_token>') # a webhook to a channel for bot stats.
 # when you generate your webhook, take the token and ID from the URL like so:
 # https://discord.com/api/webhooks/<id>/<token>
+default_prefixes = [] # default prefix(es)
 ```
 
 6. **Configuration of database**
