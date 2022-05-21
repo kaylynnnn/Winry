@@ -232,7 +232,7 @@ class Stats(commands.Cog):
         revision = self.get_last_commits()
         embed = discord.Embed(description='Latest Changes:\n' + revision)
         embed.title = 'Official Bot Server Invite'
-        embed.url = 'https://discord.gg/DWEaqMy'
+        embed.url = 'https://discord.gg/Xx3DkdFMwS'
         embed.colour = discord.Colour.blurple()
 
         embed.set_author(name=str(self.bot.owner), icon_url=self.bot.owner.display_avatar.url)

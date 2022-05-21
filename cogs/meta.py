@@ -294,7 +294,7 @@ class Meta(commands.Cog):
     @commands.command(hidden=True)
     async def hello(self, ctx: Context):
         """Displays my intro message."""
-        await ctx.send('Hello! I\'m a robot! Danny#0007 made me.')
+        await ctx.send('Hey! I\'m Winry, a mechanic made by kal#0001, I\'m a fork of R. Danny.')
 
     @commands.command()
     async def charinfo(self, ctx: Context, *, characters: str):
@@ -410,7 +410,7 @@ class Meta(commands.Cog):
         periods, e.g. tag.create for the create subcommand of the tag command
         or by spaces.
         """
-        source_url = 'https://github.com/Rapptz/RoboDanny'
+        source_url = 'https://github.com/okaykallum/Winry'
         branch = 'rewrite'
         if command is None:
             return await ctx.send(source_url)
