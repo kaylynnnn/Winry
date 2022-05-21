@@ -29,7 +29,7 @@ TOKEN_REGEX = re.compile(r'[a-zA-Z0-9_-]{23,28}\.[a-zA-Z0-9_-]{6,7}\.[a-zA-Z0-9_
 
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import Context, GuildContext
     from cogs.emoji import Emoji as EmojiCog
 
@@ -98,8 +98,8 @@ def make_field_from_note(data: dict[str, Any], column_id: int) -> tuple[str, str
 
 
 class DPYExclusive(commands.Cog, name='discord.py'):
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
         self.issue = re.compile(r'##(?P<number>[0-9]+)')
         self._invite_cache: dict[str, int] = {}
         self.bot.loop.create_task(self._prepare_invites())
@@ -135,7 +135,7 @@ class DPYExclusive(commands.Cog, name='discord.py'):
     ) -> Any:
         hdrs = {
             'Accept': 'application/vnd.github.inertia-preview+json',
-            'User-Agent': 'RoboDanny DPYExclusive Cog',
+            'User-Agent': 'Winry DPYExclusive Cog',
             'Authorization': f'token {self.bot.config.github_token}',
         }
 
@@ -419,5 +419,5 @@ class DPYExclusive(commands.Cog, name='discord.py'):
         await ctx.send(f'<{url}>')
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(DPYExclusive(bot))

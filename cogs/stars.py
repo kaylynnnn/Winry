@@ -17,7 +17,7 @@ import weakref
 import re
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import GuildContext, Context
 
     class StarboardContext(GuildContext):
@@ -90,9 +90,9 @@ class Starrers(db.Table):
 class StarboardConfig:
     __slots__ = ('bot', 'id', 'channel_id', 'threshold', 'locked', 'needs_migration', 'max_age')
 
-    def __init__(self, *, guild_id: int, bot: RoboDanny, record: Optional[asyncpg.Record] = None):
+    def __init__(self, *, guild_id: int, bot: Winry, record: Optional[asyncpg.Record] = None):
         self.id: int = guild_id
-        self.bot: RoboDanny = bot
+        self.bot: Winry = bot
 
         if record:
             self.channel_id: Optional[int] = record['channel_id']
@@ -130,8 +130,8 @@ class Stars(commands.Cog):
     and using the star/unstar commands.
     """
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
 
         # cache message objects to save Discord some HTTP requests.
         self._message_cache: dict[int, discord.Message] = {}
@@ -1321,5 +1321,5 @@ class Stars(commands.Cog):
         await ctx.send(f'Successfully sent to {success} channels (out of {len(to_send)}) in {delta:.2f}s.')
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(Stars(bot))

@@ -46,7 +46,7 @@ initial_extensions = (
 )
 
 
-def _prefix_callable(bot: RoboDanny, msg: discord.Message):
+def _prefix_callable(bot: Winry, msg: discord.Message):
     user_id = bot.user.id
     base = [f'<@!{user_id}> ', f'<@{user_id}> ']
     if msg.guild is None:
@@ -62,7 +62,7 @@ class ProxyObject(discord.Object):
         self.guild: Optional[discord.abc.Snowflake] = guild
 
 
-class RoboDanny(commands.AutoShardedBot):
+class Winry(commands.AutoShardedBot):
     user: discord.ClientUser
     pool: asyncpg.Pool
     command_stats: Counter[str]

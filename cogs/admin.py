@@ -25,7 +25,7 @@ if TYPE_CHECKING:
     from typing_extensions import Self
     from asyncpg import Record
     from .utils.context import Context, GuildContext
-    from bot import RoboDanny
+    from bot import Winry
 
 
 class PerformanceMocker:
@@ -75,8 +75,8 @@ class PerformanceMocker:
 class Admin(commands.Cog):
     """Admin-only commands that make the bot dynamic."""
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
         self._last_result: Optional[Any] = None
         self.sessions: set[int] = set()
 

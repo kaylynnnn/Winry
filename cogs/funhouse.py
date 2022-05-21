@@ -8,7 +8,7 @@ import googletrans
 import io
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import Context
 
 GUILD_ID = 81883016288276480
@@ -17,8 +17,8 @@ GENERAL_VOICE_ID = 81883016309248000
 
 
 class Funhouse(commands.Cog):
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
         self.trans = googletrans.Translator()
 
     @property
@@ -105,5 +105,5 @@ class Funhouse(commands.Cog):
         await ctx.send(embed=embed)
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(Funhouse(bot))

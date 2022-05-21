@@ -8,7 +8,7 @@ import io
 
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from aiohttp import ClientSession
     from asyncpg import Pool, Connection
 
@@ -78,7 +78,7 @@ class Context(commands.Context):
     channel: Union[discord.VoiceChannel, discord.TextChannel, discord.Thread, discord.DMChannel]
     prefix: str
     command: commands.Command[Any, ..., Any]
-    bot: RoboDanny
+    bot: Winry
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

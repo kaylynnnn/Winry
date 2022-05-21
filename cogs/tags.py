@@ -15,7 +15,7 @@ import argparse
 import shlex
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import GuildContext, Context
 
 
@@ -171,8 +171,8 @@ class TagName(commands.clean_content):
 class Tags(commands.Cog):
     """Commands to fetch something by a tag name"""
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
 
         # guild_id: set(name)
         self._reserved_tags_being_made: dict[int, set[str]] = {}
@@ -1317,5 +1317,5 @@ class Tags(commands.Cog):
         pass
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(Tags(bot))

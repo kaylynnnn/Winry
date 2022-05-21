@@ -17,7 +17,7 @@ import re
 import io
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import GuildContext, Context
 
 log = logging.getLogger(__name__)
@@ -122,8 +122,8 @@ class EmojiStats(db.Table, table_name='emoji_stats'):
 class Emoji(commands.Cog):
     """Custom emoji tracking"""
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
         self._batch_of_data: defaultdict[int, Counter[int]] = defaultdict(Counter)
         self._batch_lock = asyncio.Lock()
         self.bulk_insert.add_exception_type(asyncpg.PostgresConnectionError)
@@ -486,5 +486,5 @@ class Emoji(commands.Cog):
                     return await ctx.send(f'Created {created}')
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(Emoji(bot))

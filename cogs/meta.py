@@ -14,7 +14,7 @@ import inspect
 import itertools
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import GuildContext, Context
     import datetime
 
@@ -51,7 +51,7 @@ class GroupHelpPageSource(menus.ListPageSource):
 
 
 class HelpSelectMenu(discord.ui.Select['HelpMenu']):
-    def __init__(self, commands: dict[commands.Cog, list[commands.Command]], bot: RoboDanny):
+    def __init__(self, commands: dict[commands.Cog, list[commands.Command]], bot: Winry):
         super().__init__(
             placeholder='Select a category...',
             min_values=1,
@@ -59,7 +59,7 @@ class HelpSelectMenu(discord.ui.Select['HelpMenu']):
             row=0,
         )
         self.commands: dict[commands.Cog, list[commands.Command]] = commands
-        self.bot: RoboDanny = bot
+        self.bot: Winry = bot
         self.__fill_options()
 
     def __fill_options(self) -> None:
@@ -125,7 +125,7 @@ class FrontPageSource(menus.PageSource):
 
         embed.add_field(
             name='Support Server',
-            value='For more help, consider joining the official server over at https://discord.gg/DWEaqMy',
+            value='For more help, consider joining the official server over at https://discord.gg/Xx3DkdFMwS',
             inline=False,
         )
 
@@ -134,10 +134,10 @@ class FrontPageSource(menus.PageSource):
             embed.add_field(
                 name='Who are you?',
                 value=(
-                    "I'm a bot made by Danny#0007. I'm the oldest running Discord bot! I've been running since "
+                    "I'm a bot made by kal#0001. I'm a fork of R. Danny, the oldest bot on Discord! I've been running since "
                     f'{created_at}. I have features such as moderation, tags, starboard, and more. You can get more '
                     'information on my commands by using the dropdown below.\n\n'
-                    "I'm also open source. You can see my code on [GitHub](https://github.com/Rapptz/RoboDanny)!"
+                    "I'm also open source. You can see my code on [GitHub](https://github.com/okaykallum/Winry)!"
                 ),
                 inline=False,
             )
@@ -274,8 +274,8 @@ class PaginatedHelpCommand(commands.HelpCommand):
 class Meta(commands.Cog):
     """Commands for utilities related to Discord or the Bot itself."""
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
         self.old_help_command: Optional[commands.HelpCommand] = bot.help_command
         bot.help_command = PaginatedHelpCommand()
         bot.help_command.cog = self
@@ -733,5 +733,5 @@ class Meta(commands.Cog):
         await ctx.send('go')
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(Meta(bot))

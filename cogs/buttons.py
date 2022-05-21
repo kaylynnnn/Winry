@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 if TYPE_CHECKING:
     from .utils.context import GuildContext, Context
     from .utils.paginator import RoboPages
-    from bot import RoboDanny
+    from bot import Winry
 
 
 def can_use_spoiler():
@@ -93,7 +93,7 @@ class RedditMediaURL:
             raise commands.BadArgument('Not a valid URL.')
 
         headers = {
-            'User-Agent': 'Discord:RoboDanny:v4.0 (by /u/Rapptz)',
+            'User-Agent': 'Discord:Winry:v4.0 (by /u/Rapptz)',
         }
         await ctx.trigger_typing()
         if url.host == 'v.redd.it':
@@ -155,7 +155,7 @@ class SpoilerCache:
     def has_single_image(self) -> bool:
         return bool(self.attachments) and self.attachments[0].filename.lower().endswith(('.gif', '.png', '.jpg', '.jpeg'))
 
-    def to_embed(self, bot: RoboDanny) -> discord.Embed:
+    def to_embed(self, bot: Winry) -> discord.Embed:
         embed = discord.Embed(title=f'{self.title} Spoiler', colour=0x01AEEE)
         if self.text:
             embed.description = self.text
@@ -206,8 +206,8 @@ class SpoilerCooldown(commands.CooldownMapping):
 class Buttons(commands.Cog):
     """Buttons that make you feel."""
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
         self._spoiler_cache: MutableMapping[int, SpoilerCache] = LRU(128)
         self._spoiler_cooldown = SpoilerCooldown()
 
@@ -339,7 +339,7 @@ class Buttons(commands.Cog):
                 break
 
         # on mobile, messages that are deleted immediately sometimes persist client side
-        await asyncio.sleep(0.2, loop=self.bot.loop)
+        await asyncio.sleep(0.2)
         await ctx.message.delete()
         data = discord.Embed(title=title)
         if text:
@@ -492,5 +492,5 @@ class Buttons(commands.Cog):
         await pages.start()
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(Buttons(bot))

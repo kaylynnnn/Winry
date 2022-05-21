@@ -10,7 +10,7 @@ from typing import Optional
 from .utils.formats import plural
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import Context
     from .splatoon import Splatoon
     from .tags import Tags
@@ -19,8 +19,8 @@ if TYPE_CHECKING:
 class RNG(commands.Cog):
     """Utilities that provide pseudo-RNG."""
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
 
     @property
     def display_emoji(self) -> discord.PartialEmoji:
@@ -203,5 +203,5 @@ class RNG(commands.Cog):
         await ctx.send('\n'.join(builder))
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(RNG(bot))

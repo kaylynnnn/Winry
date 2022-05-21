@@ -18,7 +18,7 @@ import asyncpg
 import io
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import GuildContext, Context
     from cogs.reminder import Timer
 
@@ -74,7 +74,7 @@ class ModConfig:
         'muted_members',
     )
 
-    bot: RoboDanny
+    bot: Winry
     raid_mode: int
     id: int
     broadcast_channel_id: Optional[int]
@@ -84,7 +84,7 @@ class ModConfig:
     mute_role_id: Optional[int]
 
     @classmethod
-    async def from_record(cls, record: Any, bot: RoboDanny):
+    async def from_record(cls, record: Any, bot: Winry):
         self = cls()
 
         # the basic configuration
@@ -309,8 +309,8 @@ def can_mute():
 class Mod(commands.Cog):
     """Moderation related commands."""
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
 
         # guild_id: SpamChecker
         self._spam_check: defaultdict[int, SpamChecker] = defaultdict(SpamChecker)
@@ -1998,5 +1998,5 @@ class Mod(commands.Cog):
             await ctx.send('Missing a duration to selfmute for.')
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(Mod(bot))

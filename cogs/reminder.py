@@ -13,7 +13,7 @@ import textwrap
 if TYPE_CHECKING:
     from typing_extensions import Self
     from .utils.context import Context, GuildContext
-    from bot import RoboDanny
+    from bot import Winry
 
 
 class Reminders(db.Table):
@@ -83,8 +83,8 @@ class Timer:
 class Reminder(commands.Cog):
     """Reminders to do something."""
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
         self._have_data = asyncio.Event()
         self._current_timer: Optional[Timer] = None
         self._task = bot.loop.create_task(self.dispatch_timers())

@@ -6,7 +6,7 @@ import discord
 import asyncio
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import GuildContext
 
 
@@ -18,8 +18,8 @@ def to_emoji(c: int) -> str:
 class Polls(commands.Cog):
     """Poll voting system."""
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
 
     @commands.command()
     @commands.guild_only()
@@ -97,5 +97,5 @@ class Polls(commands.Cog):
             await poll.add_reaction(emoji)
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(Polls(bot))

@@ -7,7 +7,7 @@ import discord
 import importlib
 import contextlib
 
-from bot import RoboDanny, initial_extensions
+from bot import Winry, initial_extensions
 from cogs.utils.db import Table
 
 from pathlib import Path
@@ -75,7 +75,7 @@ async def run_bot():
         log.exception('Could not set up PostgreSQL. Exiting.')
         return
 
-    bot = RoboDanny()
+    bot = Winry()
     bot.pool = pool
     await bot.start()
 

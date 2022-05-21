@@ -16,7 +16,7 @@ from collections import Counter
 
 if TYPE_CHECKING:
     from .utils.context import Context, GuildContext
-    from bot import RoboDanny
+    from bot import Winry
     from asyncpg import Record, Connection
     from cogs.reminder import Timer
 
@@ -212,8 +212,8 @@ class API(commands.Cog):
 
     faq_entries: dict[str, str]
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
         self.issue = re.compile(r'##(?P<number>[0-9]+)')
 
     @property
@@ -945,5 +945,5 @@ class API(commands.Cog):
             return await ctx.send(str(error))
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     await bot.add_cog(API(bot))

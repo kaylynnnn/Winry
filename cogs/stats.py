@@ -25,7 +25,7 @@ import io
 import gc
 
 if TYPE_CHECKING:
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import GuildContext, Context
 
 log = logging.getLogger(__name__)
@@ -88,8 +88,8 @@ def object_at(addr: int) -> Optional[Any]:
 class Stats(commands.Cog):
     """Bot usage statistics."""
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
         self.process = psutil.Process()
         self._batch_lock = asyncio.Lock()
         self._data_batch: list[DataBatchEntry] = []
@@ -218,7 +218,7 @@ class Stats(commands.Cog):
 
         # [`hash`](url) message (offset)
         offset = time.format_relative(commit_time.astimezone(datetime.timezone.utc))
-        return f'[`{short_sha2}`](https://github.com/Rapptz/RoboDanny/commit/{commit.hex}) {short} ({offset})'
+        return f'[`{short_sha2}`](https://github.com/okaykallum/Winry/commit/{commit.hex}) {short} ({offset})'
 
     def get_last_commits(self, count=3):
         repo = pygit2.Repository('.git')
@@ -1092,7 +1092,7 @@ async def on_error(self, event: str, *args: Any, **kwargs: Any) -> None:
         pass
 
 
-async def setup(bot: RoboDanny):
+async def setup(bot: Winry):
     if not hasattr(bot, 'command_stats'):
         bot.command_stats = Counter()
 
@@ -1106,7 +1106,7 @@ async def setup(bot: RoboDanny):
     commands.AutoShardedBot.on_error = on_error
 
 
-async def teardown(bot: RoboDanny):
+async def teardown(bot: Winry):
     commands.AutoShardedBot.on_error = old_on_error
     logging.getLogger().removeHandler(bot.gateway_handler)
     del bot.gateway_handler
