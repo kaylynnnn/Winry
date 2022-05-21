@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from discord.ext import commands
 import discord
+import jishaku
 from cogs.utils.config import Config
 from cogs.utils.context import Context
 import datetime
@@ -18,6 +19,12 @@ import asyncpg
 if TYPE_CHECKING:
     from cogs.reminder import Reminder
     from cogs.config import Config as ConfigCog
+
+
+jishaku.Flags.HIDE = True
+jishaku.Flags.NO_DM_TRACEBACK = True
+jishaku.Flags.NO_UNDERSCORE = True
+jishaku.Flags.RETAIN = True
 
 
 description = """
