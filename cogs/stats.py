@@ -91,11 +91,11 @@ class Stats(commands.Cog):
     def __init__(self, bot: RoboDanny):
         self.bot: RoboDanny = bot
         self.process = psutil.Process()
-        self._batch_lock = asyncio.Lock(loop=bot.loop)
+        self._batch_lock = asyncio.Lock()
         self._data_batch: list[DataBatchEntry] = []
         self.bulk_insert_loop.add_exception_type(asyncpg.PostgresConnectionError)
         self.bulk_insert_loop.start()
-        self._gateway_queue = asyncio.Queue(loop=bot.loop)
+        self._gateway_queue = asyncio.Queue()
         self.gateway_worker.start()
 
     @property
@@ -697,7 +697,7 @@ class Stats(commands.Cog):
         description = [
             f'Total `Pool.acquire` Waiters: {total_waiting}',
             f'Current Pool Generation: {current_generation}',
-            f'Connections In Use: {len(pool._holders) - pool._queue.qsize()}',  # type: ignore
+            f'Connections In Use: {len(pool._holders) - pool._queue.qsize()}',
         ]
 
         questionable_connections = 0
@@ -724,13 +724,7 @@ class Stats(commands.Cog):
             embed.colour = WARNING
             total_warnings += 1
 
-        try:
-            task_retriever = asyncio.Task.all_tasks
-        except AttributeError:
-            # future proofing for 3.9 I guess
-            task_retriever = asyncio.all_tasks
-
-        all_tasks = task_retriever(loop=self.bot.loop)
+        all_tasks = asyncio.all_tasks(loop=self.bot.loop)
 
         event_tasks = [t for t in all_tasks if 'Client._run_event' in repr(t) and not t.done()]
 

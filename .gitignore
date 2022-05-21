@@ -1,12 +1,12 @@
 node_modules/*
 
 *.json
-!migrations/*
-migrations/current-*.json
+migrations/
 
 *.pyc
 *.log
-venv/*
-.venv/*
+venv/
+.venv/
 *.sublime-*
 config.py
+__pycache__/

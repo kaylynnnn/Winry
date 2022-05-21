@@ -22,19 +22,16 @@ if TYPE_CHECKING:
 
 description = """
 Hello! I am a bot written by Danny to provide some nice utilities.
+Forked by Kally to provide some niceties for her. \U0001f49c
 """
 
 log = logging.getLogger(__name__)
 
 initial_extensions = (
     'cogs.meta',
-    'cogs.splatoon',
     'cogs.rng',
     'cogs.mod',
-    'cogs.profile',
     'cogs.tags',
-    'cogs.lounge',
-    'cogs.dbots',
     'cogs.api',
     'cogs.stars',
     'cogs.admin',
@@ -52,10 +49,9 @@ def _prefix_callable(bot: RoboDanny, msg: discord.Message):
     user_id = bot.user.id
     base = [f'<@!{user_id}> ', f'<@{user_id}> ']
     if msg.guild is None:
-        base.append('!')
-        base.append('?')
+        base.append('w!')
     else:
-        base.extend(bot.prefixes.get(msg.guild.id, ['?', '!']))
+        base.extend(bot.prefixes.get(msg.guild.id, ['w!']))
     return base
 
 
@@ -95,12 +91,10 @@ class RoboDanny(commands.AutoShardedBot):
             allowed_mentions=allowed_mentions,
             intents=intents,
             enable_debug_events=True,
+            activity=discord.Activity(type=discord.ActivityType.listening, name='w!'),
         )
 
         self.client_id: str = config.client_id
-        self.carbon_key: str = config.carbon_key
-        self.bots_key: str = config.bots_key
-        self.challonge_api_key: str = config.challonge_api_key
 
         # shard_id: List[datetime.datetime]
         # shows the last attempted IDENTIFYs and RESUMEs

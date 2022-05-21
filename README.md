@@ -1,6 +1,6 @@
-## R. Danny
+## Winry
 
-A personal bot that runs on Discord.
+A fork of [R. Danny](https://github.com/Rapptz/RoboDanny) tailored to myself.
 
 ## Running
 
@@ -8,26 +8,30 @@ I would prefer if you don't run an instance of my bot. Just call the join comman
 
 Nevertheless, the installation steps are as follows:
 
-1. **Make sure to get Python 3.8 or higher**
+1. **Make sure to get Python 3.10 or higher**
 
 This is required to actually run the bot.
 
 2. **Set up venv**
 
-Just do `python3.8 -m venv venv`
+Just do `python3.10 -m venv venv`
 
-3. **Install dependencies**
+3. **Activate the environment**
+Windows `.\venv\Scripts\activate`
+*nix `source venv/bin/activate`
+
+4. **Install dependencies**
 
 This is `pip install -U -r requirements.txt`
 
-4. **Create the database in PostgreSQL**
+5. **Create the database in PostgreSQL**
 
 You will need PostgreSQL 9.5 or higher and type the following
 in the `psql` tool:
 
 ```sql
-CREATE ROLE rdanny WITH LOGIN PASSWORD 'yourpw';
-CREATE DATABASE rdanny OWNER rdanny;
+CREATE ROLE winry WITH LOGIN PASSWORD 'yourpw';
+CREATE DATABASE winry OWNER winry;
 CREATE EXTENSION pg_trgm;
 ```
 
@@ -39,15 +43,12 @@ the bot is with the following template:
 ```py
 client_id   = '' # your bot's client ID
 token = '' # your bot's token
-carbon_key = '' # your bot's key on carbon's site
-bots_key = '' # your key on bots.discord.pw
 postgresql = 'postgresql://user:password@host/database' # your postgresql info from above
-challonge_api_key = '...' # for tournament cog
-stat_webhook = ('<webhook_id>','<webhook_token>') # a webhook to a channel for bot stats. 
-# when you generate your webhook, take the token and ID from the URL like so: 
+stat_webhook = ('<webhook_id>','<webhook_token>') # a webhook to a channel for bot stats.
+# when you generate your webhook, take the token and ID from the URL like so:
 # https://discord.com/api/webhooks/<id>/<token>
 ```
 
 6. **Configuration of database**
 
-To configure the PostgreSQL database for use by the bot, go to the directory where `launcher.py` is located, and run the script by doing `python3.8 launcher.py db init`
+To configure the PostgreSQL database for use by the bot, go to the directory where `launcher.py` is located, and run the script by doing `python3.10 launcher.py db init`

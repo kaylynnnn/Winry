@@ -319,15 +319,15 @@ class Mod(commands.Cog):
         # A batch of data for bulk inserting mute role changes
         # True - insert, False - remove
         self._data_batch: defaultdict[int, list[tuple[int, Any]]] = defaultdict(list)
-        self._batch_lock = asyncio.Lock(loop=bot.loop)
-        self._disable_lock = asyncio.Lock(loop=bot.loop)
+        self._batch_lock = asyncio.Lock()
+        self._disable_lock = asyncio.Lock()
         self.batch_updates.add_exception_type(asyncpg.PostgresConnectionError)
         self.batch_updates.start()
 
         # (guild_id, channel_id): List[str]
         # A batch list of message content for message
         self.message_batches: defaultdict[tuple[int, int], list[str]] = defaultdict(list)
-        self._batch_message_lock = asyncio.Lock(loop=bot.loop)
+        self._batch_message_lock = asyncio.Lock()
         self.bulk_send_messages.start()
 
     @property
@@ -1763,7 +1763,7 @@ class Mod(commands.Cog):
         config = await self.get_guild_config(ctx.guild.id)
         role = config and config.mute_role
         if role is not None:
-            members = config.muted_members.copy()  # type: ignore  # This is already narrowed
+            members = config.muted_members.copy()  # This is already narrowed
             members.update(map(lambda r: r.id, role.members))
             total = len(members)
             role = f'{role} (ID: {role.id})'
