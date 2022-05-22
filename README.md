@@ -48,6 +48,9 @@ stat_webhook = ('<webhook_id>','<webhook_token>') # a webhook to a channel for b
 # when you generate your webhook, take the token and ID from the URL like so:
 # https://discord.com/api/webhooks/<id>/<token>
 default_prefixes = [] # default prefix(es)
+owner_id = 0
+owner_ids = {}
+# Only set either owner_id or owner_ids.
 ```
 
 6. **Configuration of database**

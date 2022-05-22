@@ -100,6 +100,8 @@ class Winry(commands.AutoShardedBot):
             intents=intents,
             enable_debug_events=True,
             activity=discord.Activity(type=discord.ActivityType.listening, name='w!'),
+            owner_id=config.owner_id,
+            owner_ids=config.owner_ids,
         )
 
         self.client_id: str = config.client_id
