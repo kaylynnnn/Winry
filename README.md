@@ -51,6 +51,9 @@ default_prefixes = [] # default prefix(es)
 owner_id = 0
 owner_ids = {}
 # Only set either owner_id or owner_ids.
+mc_ip = 'localhost'
+mc_port = 0
+mc_password = ''
 ```
 
 6. **Configuration of database**

@@ -41,7 +41,7 @@ initial_extensions = (
     'cogs.tags',
     'cogs.api',
     'cogs.stars',
-    # 'cogs.admin',
+    'cogs.admin',
     'jishaku',
     'cogs.buttons',
     'cogs.reminder',
