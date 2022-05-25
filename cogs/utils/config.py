@@ -88,3 +88,6 @@ class Config(Generic[_T]):
 
     def all(self) -> Dict[str, Union[_T, Any]]:
         return self._db
+
+    def __iter__(self):
+        yield from self._db.items()

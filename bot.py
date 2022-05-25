@@ -259,6 +259,9 @@ class Winry(commands.AutoShardedBot):
             return None
         return members[0]
 
+    async def try_user(self, user_id: int) -> discord.User:
+        return self.get_user(user_id) or await self.fetch_user(user_id)
+
     async def resolve_member_ids(self, guild: discord.Guild, member_ids: Iterable[int]) -> AsyncIterator[discord.Member]:
         """Bulk resolves member IDs to member instances, if possible.
 
