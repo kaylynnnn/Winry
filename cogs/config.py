@@ -11,12 +11,12 @@ import discord
 
 if TYPE_CHECKING:
     from typing_extensions import TypeAlias
-    from bot import RoboDanny
+    from bot import Winry
     from .utils.context import Context, GuildContext
     from asyncpg import Record, Connection, Pool
 
 
-async def plonk_iterator(bot: RoboDanny, guild: discord.Guild, records: list[Record]) -> AsyncIterator[str]:
+async def plonk_iterator(bot: Winry, guild: discord.Guild, records: list[Record]) -> AsyncIterator[str]:
     for record in records:
         entity_id = record[0]
         resolved = guild.get_channel(entity_id) or await bot.get_or_fetch_member(guild, entity_id)
@@ -26,7 +26,7 @@ async def plonk_iterator(bot: RoboDanny, guild: discord.Guild, records: list[Rec
 
 
 class PlonkedPageSource(menus.AsyncIteratorPageSource):
-    def __init__(self, bot: RoboDanny, guild: discord.Guild, records: list[Record]):
+    def __init__(self, bot: Winry, guild: discord.Guild, records: list[Record]):
         super().__init__(plonk_iterator(bot, guild, records), per_page=20)
 
     async def format_page(self, menu: RoboPages, entries: list[str]):
@@ -194,8 +194,8 @@ class Config(commands.Cog):
     for your server or block certain channels or members.
     """
 
-    def __init__(self, bot: RoboDanny):
-        self.bot: RoboDanny = bot
+    def __init__(self, bot: Winry):
+        self.bot: Winry = bot
 
     @property
     def display_emoji(self) -> discord.PartialEmoji:
